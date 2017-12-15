@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+  <!--
+  Copyright (c) 2016 foruok. All rights reserved.
+  欢迎关注foruok的微信订阅好“程序视界”。
+  -->
+<head>
+    <script type="text/javascript">
+      function Login(){
+        window.NativeLogin(document.getElementById("userName").value, document.getElementById("password").value);
+      }
+      function GetId(){
+        alert("get id from native by extensions: " + app.GetId());
+      }
+    </script>
+  <title>CEF JS Integration</title>
+</head>
+
+<body>
+<h3>Call into native by Window bindings:</h3>
+<form>
+UserName: <input type="text" id="userName" />&nbsp;&nbsp;Password: 
+<input type="text" id="password" />&nbsp;&nbsp;<input  type="button" value="Login" onclick="Login()"/>
+</form>
+<hr>
+<h3>Call into native by js extensions:</h3>
+<input  type="button" value="GetId" onclick="GetId()"/>
+
+</html>
