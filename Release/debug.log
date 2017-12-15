@@ -1,0 +1,7 @@
+[1215/163008:INFO:chrome_scheme_handler.cc(264)] Reguest for unknown chrome resource: chrome://setting/
+[1215/165408:ERROR:ipc_channel_win.cc(217)] pipe error: 109
+[1215/165505:WARNING:raw_channel_win.cc(532)] WriteFile: 管道正在被关闭。 (0xE8)
+[1215/172437:WARNING:quota_manager.cc(1778)] Create directory failed for path
+[1215/172437:WARNING:quota_manager.cc(1778)] Create directory failed for path
+[1215/172437:WARNING:quota_manager.cc(1778)] Create directory failed for path
+[1215/172437:WARNING:quota_manager.cc(1778)] Create directory failed for path

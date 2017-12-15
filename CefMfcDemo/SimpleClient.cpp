@@ -72,3 +72,52 @@ bool CSimpleClient::OnBeforePopup(CefRefPtr<CefBrowser> browser,
 
 	return false;
 }
+
+void CSimpleClient::OnBeforeDownload(
+	CefRefPtr<CefBrowser> browser,
+	CefRefPtr<CefDownloadItem> download_item,
+	const CefString& suggested_name,
+	CefRefPtr<CefBeforeDownloadCallback> callback)
+{
+	callback->Continue(download_item->GetURL(), true);
+}
+
+void CSimpleClient::OnDownloadUpdated(
+	CefRefPtr<CefBrowser> browser,
+	CefRefPtr<CefDownloadItem> download_item,
+	CefRefPtr<CefDownloadItemCallback> callback)
+{
+	if (download_item->IsComplete())
+	{
+		//MessageBox.Show("下载成功");
+		OutputDebugString(L"下载成功");
+		if (browser->IsPopup() && !browser->HasDocument())
+		{
+			//browser->GetHost()->ParentWindowWillClose();
+			browser->GetHost()->CloseBrowser(true);
+		}
+	}
+	else
+	{
+		//如果取消应该跳转到一个网页
+		browser->GoBack();
+	}
+}
+
+bool CSimpleClient::OnPreKeyEvent(CefRefPtr<CefBrowser> browser,
+	const CefKeyEvent& event,
+	CefEventHandle os_event,
+	bool* is_keyboard_shortcut) {
+	if (event.windows_key_code == 116)//F5刷新
+		browser->Reload();
+	return false;
+}
+
+bool CSimpleClient::OnKeyEvent(CefRefPtr<CefBrowser> browser,
+	const CefKeyEvent& event,
+	CefEventHandle os_event) {
+	return false;
+}
+
+
+

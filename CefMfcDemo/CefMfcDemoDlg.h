@@ -25,6 +25,8 @@ public:
 
 	CefRefPtr<CSimpleClient>  m_simpleClient;
 
+	BOOL PreTranslateMessage(MSG* pMsg);
+
 // й╣ож
 protected:
 	HICON m_hIcon;

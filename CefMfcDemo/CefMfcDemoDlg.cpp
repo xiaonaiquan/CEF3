@@ -168,3 +168,18 @@ void CCefMfcDemoDlg::OnBnClickedBtnGo()
 	const CefString cefStrUrl(strUrl);
 	m_simpleClient->GetBrowser()->GetMainFrame()->LoadURL(cefStrUrl);
 }
+
+BOOL CCefMfcDemoDlg::PreTranslateMessage(MSG* pMsg)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	if (pMsg->message == WM_KEYDOWN)
+	{
+		switch (pMsg->wParam)
+		{
+		case VK_RETURN:    // 屏蔽回车
+			OnBnClickedBtnGo();
+			return TRUE;
+		}
+	}
+	return CDialog::PreTranslateMessage(pMsg);
+}

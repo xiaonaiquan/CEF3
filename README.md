@@ -9,4 +9,7 @@ MFC下使用CEF3
 5.使用flash的方法在我CSDN博客中，把代码加入进来就可以了。
 6.browser和render进程分别继承CefAPP
 7.test.html是网页测试用例 
-8.解决flash有黑框 : http://blog.csdn.net/zhuhongshu/article/details/77482985 **
+8.解决flash有黑框 : http://blog.csdn.net/zhuhongshu/article/details/77482985 
+9.实现下载功能（是网页上触发下载，并不是MFC触发下载）
+10.GO按钮增加了快捷键回车
+	**

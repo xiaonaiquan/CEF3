@@ -2,7 +2,7 @@
 
 #include "include/cef_client.h"
 
-class CSimpleClient : public CefClient, public CefLifeSpanHandler
+class CSimpleClient : public CefClient, public CefLifeSpanHandler, public CefDownloadHandler, public CefKeyboardHandler
 {
 public:
 	CSimpleClient();
@@ -31,6 +31,31 @@ public:
 		CefRefPtr<CefClient>& client,
 		CefBrowserSettings& settings,
 		bool* no_javascript_access) override;
+
+	//download
+	virtual CefRefPtr<CefDownloadHandler> GetDownloadHandler(){ return this; }
+	virtual void OnBeforeDownload(
+		CefRefPtr<CefBrowser> browser,
+		CefRefPtr<CefDownloadItem> download_item,
+		const CefString& suggested_name,
+		CefRefPtr<CefBeforeDownloadCallback> callback) OVERRIDE;
+	virtual void OnDownloadUpdated(
+		CefRefPtr<CefBrowser> browser,
+		CefRefPtr<CefDownloadItem> download_item,
+		CefRefPtr<CefDownloadItemCallback> callback) OVERRIDE;
+
+	//F5刷新功能
+	virtual CefRefPtr<CefKeyboardHandler> GetKeyboardHandler() //实现  
+	{
+		return this;
+	}
+	virtual bool OnPreKeyEvent(CefRefPtr<CefBrowser> browser,
+		const CefKeyEvent& event,
+		CefEventHandle os_event,
+		bool* is_keyboard_shortcut) OVERRIDE;
+	virtual bool OnKeyEvent(CefRefPtr<CefBrowser> browser,
+		const CefKeyEvent& event,
+		CefEventHandle os_event) OVERRIDE;
 
 private:
 	CefRefPtr<CefBrowser> m_cefBrowser;
