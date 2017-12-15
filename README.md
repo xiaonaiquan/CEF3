@@ -12,4 +12,5 @@ MFC下使用CEF3
 8.解决flash有黑框 : http://blog.csdn.net/zhuhongshu/article/details/77482985 
 9.实现下载功能（是网页上触发下载，并不是MFC触发下载）
 10.GO按钮增加了快捷键回车
+11.增加F5刷新
 	**
