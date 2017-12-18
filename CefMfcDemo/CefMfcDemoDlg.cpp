@@ -36,6 +36,8 @@ BEGIN_MESSAGE_MAP(CCefMfcDemoDlg, CDialogEx)
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 	ON_BN_CLICKED(IDC_BTN_GO, &CCefMfcDemoDlg::OnBnClickedBtnGo)
+	ON_BN_CLICKED(IDC_BTN_GOFORD, &CCefMfcDemoDlg::OnBnClickedBtnGoford)
+	ON_BN_CLICKED(IDC_BTN_GOBACK, &CCefMfcDemoDlg::OnBnClickedBtnGoback)
 END_MESSAGE_MAP()
 
 
@@ -154,7 +156,9 @@ void CCefMfcDemoDlg::OnSize(UINT nType, int cx, int cy)
 	}
 }
 
-
+/*
+	Go按钮
+*/
 void CCefMfcDemoDlg::OnBnClickedBtnGo()
 {
 	// TODO:  在此添加控件通知处理程序代码
@@ -169,6 +173,27 @@ void CCefMfcDemoDlg::OnBnClickedBtnGo()
 	m_simpleClient->GetBrowser()->GetMainFrame()->LoadURL(cefStrUrl);
 }
 
+/*
+	前进按钮
+*/
+void CCefMfcDemoDlg::OnBnClickedBtnGoford()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	m_simpleClient->GetBrowser()->GoForward();
+}
+
+/*
+	后退按钮
+*/
+void CCefMfcDemoDlg::OnBnClickedBtnGoback()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	m_simpleClient->GetBrowser()->GoBack();
+}
+
+/*
+	响应回车键
+*/
 BOOL CCefMfcDemoDlg::PreTranslateMessage(MSG* pMsg)
 {
 	// TODO: 在此添加专用代码和/或调用基类

@@ -40,4 +40,6 @@ public:
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnBnClickedBtnGo();
+	afx_msg void OnBnClickedBtnGoford();
+	afx_msg void OnBnClickedBtnGoback();
 };
