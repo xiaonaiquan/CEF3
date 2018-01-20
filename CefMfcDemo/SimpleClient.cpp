@@ -1,6 +1,8 @@
 #include "SimpleClient.h"
 #include  <tchar.h>
 
+enum { ID_CMD_REFRESH = 0 };
+
 CSimpleClient::CSimpleClient()
 {
 }
@@ -110,6 +112,11 @@ bool CSimpleClient::OnPreKeyEvent(CefRefPtr<CefBrowser> browser,
 	bool* is_keyboard_shortcut) {
 	if (event.windows_key_code == 116)//F5刷新
 		browser->Reload();
+	else if (event.windows_key_code == 123)
+	{
+	
+
+	}
 	return false;
 }
 
@@ -118,6 +125,37 @@ bool CSimpleClient::OnKeyEvent(CefRefPtr<CefBrowser> browser,
 	CefEventHandle os_event) {
 	return false;
 }
+
+void CSimpleClient::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
+	CefRefPtr<CefFrame> frame,
+	CefRefPtr<CefContextMenuParams> params,
+	CefRefPtr<CefMenuModel> model) 
+{
+	if (model->GetCount() > 0) {// 刷新菜单
+		model->AddSeparator();
+		model->AddItem(ID_CMD_REFRESH, __TEXT("刷新"));
+	}
+}
+
+bool CSimpleClient::OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
+	CefRefPtr<CefFrame> frame,
+	CefRefPtr<CefContextMenuParams> params,
+	int command_id, EventFlags event_flags) 
+{
+	switch (command_id)
+	{
+	case ID_CMD_REFRESH:
+		browser->Reload();
+		break;
+	default:
+		break;
+	}
+	return false;
+}
+
+
+
+
 
 
 

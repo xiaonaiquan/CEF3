@@ -2,7 +2,7 @@
 
 #include "include/cef_client.h"
 
-class CSimpleClient : public CefClient, public CefLifeSpanHandler, public CefDownloadHandler, public CefKeyboardHandler
+class CSimpleClient : public CefClient, public CefLifeSpanHandler, public CefDownloadHandler, public CefKeyboardHandler,public CefContextMenuHandler
 {
 public:
 	CSimpleClient();
@@ -56,6 +56,23 @@ public:
 	virtual bool OnKeyEvent(CefRefPtr<CefBrowser> browser,
 		const CefKeyEvent& event,
 		CefEventHandle os_event) OVERRIDE;
+
+
+	//添加右键菜单
+	virtual CefRefPtr<CefContextMenuHandler> GetContextMenuHandler() //实现  
+	{
+		return this;
+	}
+	virtual void OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
+		CefRefPtr<CefFrame> frame,
+		CefRefPtr<CefContextMenuParams> params,
+		CefRefPtr<CefMenuModel> model) OVERRIDE;
+
+	virtual bool OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
+		CefRefPtr<CefFrame> frame,
+		CefRefPtr<CefContextMenuParams> params,
+		int command_id,
+		EventFlags event_flags) OVERRIDE;
 
 private:
 	CefRefPtr<CefBrowser> m_cefBrowser;

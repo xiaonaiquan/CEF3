@@ -61,6 +61,7 @@ BOOL CCefMfcDemoDlg::OnInitDialog()
 	CefSettings settings;
 	CefSettingsTraits::init(&settings);
 	settings.multi_threaded_message_loop = true;
+	settings.remote_debugging_port = 8088;//如果不定义，则不能运行调试工具
 	//settings.single_process = true;
 
 	CefMainArgs mainArgs;
