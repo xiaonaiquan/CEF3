@@ -73,9 +73,13 @@ public:
 		CefRefPtr<CefContextMenuParams> params,
 		int command_id,
 		EventFlags event_flags) OVERRIDE;
-
+	//show dev tools
+	void ShowDevelopTools(CefRefPtr<CefBrowser> browser, const CefPoint& inspect_element_at);
+	void CloseDevelopTools(CefRefPtr<CefBrowser> browser);
 private:
 	CefRefPtr<CefBrowser> m_cefBrowser;
+
+	HWND hWnd_; //接收消息的句柄
 
 	IMPLEMENT_REFCOUNTING(CSimpleClient);
 };

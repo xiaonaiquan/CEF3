@@ -1,10 +1,13 @@
 #include "SimpleClient.h"
 #include  <tchar.h>
 
-enum { ID_CMD_REFRESH = 0 };
+enum { ID_CMD_REFRESH = 0 ,
+	ID_SHOW_DEV_TOOLS
+};
 
 CSimpleClient::CSimpleClient()
 {
+	hWnd_ = NULL;
 }
 
 
@@ -109,12 +112,13 @@ void CSimpleClient::OnDownloadUpdated(
 bool CSimpleClient::OnPreKeyEvent(CefRefPtr<CefBrowser> browser,
 	const CefKeyEvent& event,
 	CefEventHandle os_event,
-	bool* is_keyboard_shortcut) {
+	bool* is_keyboard_shortcut) 
+{
 	if (event.windows_key_code == 116)//F5刷新
 		browser->Reload();
 	else if (event.windows_key_code == 123)
 	{
-	
+		
 
 	}
 	return false;
@@ -126,6 +130,7 @@ bool CSimpleClient::OnKeyEvent(CefRefPtr<CefBrowser> browser,
 	return false;
 }
 
+//右键菜单
 void CSimpleClient::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
 	CefRefPtr<CefFrame> frame,
 	CefRefPtr<CefContextMenuParams> params,
@@ -134,6 +139,7 @@ void CSimpleClient::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
 	if (model->GetCount() > 0) {// 刷新菜单
 		model->AddSeparator();
 		model->AddItem(ID_CMD_REFRESH, __TEXT("刷新"));
+		model->AddItem(ID_SHOW_DEV_TOOLS, __TEXT("开发者选项"));
 	}
 }
 
@@ -147,10 +153,25 @@ bool CSimpleClient::OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
 	case ID_CMD_REFRESH:
 		browser->Reload();
 		break;
+	case ID_SHOW_DEV_TOOLS:
+	{
+		ShowDevelopTools(browser, CefPoint(0,0));
+		break;
+	}
 	default:
 		break;
 	}
 	return false;
+}
+
+//开发选项
+void CSimpleClient::ShowDevelopTools(CefRefPtr<CefBrowser> browser, const CefPoint& inspect_element_at) 
+{	CefWindowInfo windowInfo;	CefBrowserSettings settings;	windowInfo.SetAsPopup(browser->GetHost()->GetWindowHandle(), "DevTools");	browser->GetHost()->ShowDevTools(windowInfo, this, settings, CefPoint());
+}
+
+void CSimpleClient::CloseDevelopTools(CefRefPtr<CefBrowser> browser)
+{
+	browser->GetHost()->CloseDevTools();
 }
 
 

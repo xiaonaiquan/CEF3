@@ -5,3 +5,7 @@
 [1215/172437:WARNING:quota_manager.cc(1778)] Create directory failed for path
 [1215/172437:WARNING:quota_manager.cc(1778)] Create directory failed for path
 [1215/172437:WARNING:quota_manager.cc(1778)] Create directory failed for path
+[0210/010711:ERROR:ipc_channel_win.cc(217)] pipe error: 109
+[0210/010711:WARNING:raw_channel_win.cc(532)] WriteFile: 管道正在被关闭。 (0xE8)
+[0210/010711:WARNING:channel.cc(359)] RawChannel write error
+[0210/010747:ERROR:ipc_channel_win.cc(475)] pipe error: 109
