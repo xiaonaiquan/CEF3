@@ -17,7 +17,11 @@ CSimpleClient::~CSimpleClient()
 
 void CSimpleClient::OnAfterCreated(CefRefPtr<CefBrowser> browser)
 {
-	m_cefBrowser = browser;
+	if (!m_cefBrowser.get())
+	{
+		m_cefBrowser = browser;
+		m_BrowserHwnd = browser->GetHost()->GetWindowHandle();
+	}
 }
 
 bool CSimpleClient::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
@@ -172,6 +176,24 @@ void CSimpleClient::ShowDevelopTools(CefRefPtr<CefBrowser> browser, const CefPoi
 void CSimpleClient::CloseDevelopTools(CefRefPtr<CefBrowser> browser)
 {
 	browser->GetHost()->CloseDevTools();
+}
+
+bool CSimpleClient::DoClose(CefRefPtr<CefBrowser> browser)
+{
+	////同一个browser可能有多个浏览器窗口(在新的子窗口打开链接,而不是在当前窗口跳转时会出现.),此时返回值可能会被用来做一些特别处理.想了解请参考官方demo.
+	//if (CefCurrentlyOn(TID_UI))
+	//{
+	//	return true;
+	//}
+	return false;	//返回true取消关闭
+}
+void CSimpleClient::OnBeforeClose(CefRefPtr<CefBrowser> browser)
+{
+	if (m_BrowserHwnd == browser->GetHost()->GetWindowHandle())
+	{// 浏览器窗口被销毁的话,browser指针置为NULL.
+		m_cefBrowser = NULL;
+	}
+
 }
 
 

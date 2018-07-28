@@ -76,8 +76,12 @@ public:
 	//show dev tools
 	void ShowDevelopTools(CefRefPtr<CefBrowser> browser, const CefPoint& inspect_element_at);
 	void CloseDevelopTools(CefRefPtr<CefBrowser> browser);
+
+	virtual bool DoClose(CefRefPtr<CefBrowser> browser);
+	virtual void OnBeforeClose(CefRefPtr<CefBrowser> browser);
 private:
 	CefRefPtr<CefBrowser> m_cefBrowser;
+	CefWindowHandle m_BrowserHwnd;
 
 	HWND hWnd_; //接收消息的句柄
 
