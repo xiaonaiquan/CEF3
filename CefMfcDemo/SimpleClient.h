@@ -1,8 +1,9 @@
 #pragma once
 
 #include "include/cef_client.h"
+#include "include/cef_app.h"
 
-class CSimpleClient : public CefClient, public CefLifeSpanHandler, public CefDownloadHandler, public CefKeyboardHandler,public CefContextMenuHandler
+class CSimpleClient : public CefClient, public CefLifeSpanHandler, public CefDownloadHandler, public CefKeyboardHandler, public CefContextMenuHandler, public CefBrowserProcessHandler, public CefApp
 {
 public:
 	CSimpleClient();
@@ -15,6 +16,14 @@ public:
 	virtual void OnAfterCreated(CefRefPtr<CefBrowser> browser) OVERRIDE;
 
 	CefRefPtr<CefBrowser> GetBrowser() { return m_cefBrowser; }
+
+	virtual CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler() override
+	{
+		return this;
+	}
+	
+	//virtual void OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) OVERRIDE;
+
 
 	virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
 		CefProcessId source_process,

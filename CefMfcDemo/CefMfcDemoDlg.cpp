@@ -17,8 +17,6 @@
 
 // CCefMfcDemoDlg 对话框
 
-
-
 CCefMfcDemoDlg::CCefMfcDemoDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CCefMfcDemoDlg::IDD, pParent)
 {
@@ -64,7 +62,7 @@ BOOL CCefMfcDemoDlg::OnInitDialog()
 	CefSettingsTraits::init(&settings);
 	settings.multi_threaded_message_loop = true;
 	settings.remote_debugging_port = 8088;//如果不定义，则不能运行调试工具
-	//settings.single_process = true;
+	settings.single_process = false;
 
 	CefMainArgs mainArgs;
 
@@ -85,7 +83,7 @@ BOOL CCefMfcDemoDlg::OnInitDialog()
 	winInfo.SetAsChild(GetSafeHwnd(), rectnew);
 
 	CefBrowserSettings browserSettings;
-	CefBrowserHost::CreateBrowser(winInfo, client, _T("http://www.baidu.com"), browserSettings, NULL);
+	CefBrowserHost::CreateBrowser(winInfo, m_simpleClient, _T("https://www.baidu.com"), browserSettings, NULL);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }

@@ -24,6 +24,22 @@ void CSimpleClient::OnAfterCreated(CefRefPtr<CefBrowser> browser)
 	}
 }
 
+//void CSimpleClient::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line)
+//{
+//
+//	command_line->AppendSwitch("no-proxy-server");
+//	command_line->AppendSwitch("--enable-npapi");
+//	command_line->AppendSwitch("--disable-web-security");
+//	command_line->AppendSwitch("allow-outdated-plugins");
+//
+//	//manifest.json中的version
+//	command_line->AppendSwitchWithValue("ppapi-flash-version","20.0.0.228");
+//
+//	//加载flash插件
+//	command_line->AppendSwitchWithValue("ppapi-flash-path", "PepperFlash\\pepflashplayer.dll");
+//
+//}
+
 bool CSimpleClient::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
 	CefProcessId source_process,
 	CefRefPtr<CefProcessMessage> message)
@@ -170,7 +186,11 @@ bool CSimpleClient::OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
 
 //开发选项
 void CSimpleClient::ShowDevelopTools(CefRefPtr<CefBrowser> browser, const CefPoint& inspect_element_at) 
-{	CefWindowInfo windowInfo;	CefBrowserSettings settings;	windowInfo.SetAsPopup(browser->GetHost()->GetWindowHandle(), "DevTools");	browser->GetHost()->ShowDevTools(windowInfo, this, settings, CefPoint());
+{
+	CefWindowInfo windowInfo;
+	CefBrowserSettings settings;
+	windowInfo.SetAsPopup(browser->GetHost()->GetWindowHandle(), "DevTools");
+	browser->GetHost()->ShowDevTools(windowInfo, this, settings, CefPoint());
 }
 
 void CSimpleClient::CloseDevelopTools(CefRefPtr<CefBrowser> browser)
