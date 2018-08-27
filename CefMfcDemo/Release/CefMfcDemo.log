@@ -1,8 +1,16 @@
-﻿生成启动时间为 2018/2/10 1:10:03。
+﻿生成启动时间为 2018/8/27 23:08:41。
      1>项目“E:\Github Projects\CEF3\CefMfcDemo\CefMfcDemo.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         D:\Visual Studio\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D _WINDOWS /D NDEBUG /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleClient.cpp
+         D:\Visual Studio\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D _WINDOWS /D NDEBUG /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\CefMfcDemo.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         D:\Visual Studio\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D _WINDOWS /D NDEBUG /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CefMfcDemo.cpp CefMfcDemoDlg.cpp CEFV8HandlerEx.cpp ClientAppRender.cpp SimpleClient.cpp
+         CefMfcDemo.cpp
+         CefMfcDemoDlg.cpp
+         CEFV8HandlerEx.cpp
+         ClientAppRender.cpp
          SimpleClient.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D NDEBUG /D _UNICODE /D UNICODE /l"0x0804" /IRelease\ /nologo /fo"Release\CefMfcDemo.res" CefMfcDemo.rc 
        Link:
          D:\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Github Projects\CEF3\Release\CefMfcDemo.exe" /INCREMENTAL:NO /NOLOGO libcef.lib libcef_dll_wrapper.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"D:\Visual Studio\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"E:\Github Projects\CEF3\Release\CefMfcDemo.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Github Projects\CEF3\Release\CefMfcDemo.lib" /MACHINE:X86 /SAFESEH Release\CefMfcDemo.res
          Release\CefMfcDemo.obj
@@ -18,4 +26,4 @@
 
 生成成功。
 
-已用时间 00:00:05.97
+已用时间 00:00:13.56
