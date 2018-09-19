@@ -15719,3 +15719,5 @@
 [0827/230543:INFO:socket_host_udp.cc(357)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
 [0827/230543:INFO:socket_host_udp.cc(357)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
 [0827/230543:INFO:socket_host_udp.cc(357)] sendto() has failed twice returning a  transient error net::ERR_ADDRESS_UNREACHABLE. Dropping the packet.
+[0906/101918:ERROR:browser_host_impl.cc(1411)] Invalid URL passed to CefBrowserHostImpl::LoadURL: chrome:://version
+[0906/101920:ERROR:browser_host_impl.cc(1411)] Invalid URL passed to CefBrowserHostImpl::LoadURL: chrome:://version
