@@ -134,12 +134,14 @@ bool CSimpleClient::OnPreKeyEvent(CefRefPtr<CefBrowser> browser,
 	CefEventHandle os_event,
 	bool* is_keyboard_shortcut) 
 {
+	if (event.type != KEYEVENT_RAWKEYDOWN)
+		return false;
+
 	if (event.windows_key_code == 116)//F5Ë¢ÐÂ
 		browser->Reload();
-	else if (event.windows_key_code == 123)
+	else if (event.windows_key_code == VK_F12)
 	{
-		
-
+		ShowDevelopTools(browser, CefPoint(0, 0));
 	}
 	return false;
 }

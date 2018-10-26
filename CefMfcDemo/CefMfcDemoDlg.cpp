@@ -9,6 +9,8 @@
 
 #include "include/cef_app.h"
 #include "ClientAppRender.h"
+#include "include/cef_runnable.h"
+#include "include/cef_cookie.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,6 +42,7 @@ END_MESSAGE_MAP()
 
 
 // CCefMfcDemoDlg 消息处理程序
+
 
 BOOL CCefMfcDemoDlg::OnInitDialog()
 {
@@ -82,8 +85,24 @@ BOOL CCefMfcDemoDlg::OnInitDialog()
 	CefWindowInfo winInfo;
 	winInfo.SetAsChild(GetSafeHwnd(), rectnew);
 
+	CefRefPtr<CefSetCookieCallback> callback = NULL;
+	std::wstring username_key = L"Username"; //cookie的key
+	std::wstring username_value = L"xiaonaiquan";//cookie的value
+	std::wstring domain = L"csdn.net";
+
+	CefRefPtr<CefCookieManager> manager = CefCookieManager::GetGlobalManager(nullptr);
+	CefCookie cookie;
+	CefString(&cookie.name).FromWString(username_key.c_str());
+	CefString(&cookie.value).FromWString(username_value.c_str());
+	CefString(&cookie.domain).FromWString(domain.c_str());
+	CefString(&cookie.path).FromASCII("/");
+	cookie.has_expires = false;
+
+	domain = L"https://" + domain;
+	CefPostTask(TID_IO, NewCefRunnableMethod(manager.get(), &CefCookieManager::SetCookie, CefString(domain.c_str()), cookie, callback));
+
 	CefBrowserSettings browserSettings;
-	CefBrowserHost::CreateBrowser(winInfo, m_simpleClient, _T("https://www.baidu.com"), browserSettings, NULL);
+	CefBrowserHost::CreateBrowser(winInfo, m_simpleClient, domain.c_str(), browserSettings, NULL);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
