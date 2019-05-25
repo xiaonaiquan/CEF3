@@ -19,3 +19,6 @@ MFC下使用CEF3
 14.   增加cookie
 
 ## 有什么意见请及时通知我，谢谢，我的QQ:839505138
+
+### 如果你觉得我的项目对你有帮助，你能慷慨解囊就最好不过了！
+![image](https://github.com/xiaonaiquan/CEF3/blob/master/images/%E6%94%B6%E6%AC%BE%E7%A0%81.jpg)
